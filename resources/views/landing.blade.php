@@ -107,7 +107,7 @@
             </div>
 
             <!-- Formulario para ingresar el nombre -->
-            <form method="POST">
+            <form method="POST" action = "{{route('dashboard')}}">
                 @csrf
 
                 <div class="mb-4">
