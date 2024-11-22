@@ -102,9 +102,10 @@
 
             <!-- Botón para continuar -->
             <div class="mt-6">
-                <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300">
-                    ¡Comenzar la Aventura!
-                </a>
+            <a href="{{ route('chapter1') }}" 
+            class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition duration-300 text-lg font-semibold">
+            🎮 Comenzar Aventura
+</a>
             </div>
         </div>
     </div>
