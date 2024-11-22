@@ -18,7 +18,7 @@
             ¡Hola, {{ $name }}!
         </h1>
         <p class="text-xl text-gray-800 mb-6">
-            🎄 Bienvenido al Dashboard Navideño 🎅
+            🎄 Bienvenido a nuestra historia interactiva 🎅
         </p>
         <p class="text-lg text-gray-600 mb-8">
             ¡Elige una opción para continuar!
@@ -32,18 +32,23 @@
                 🎮 Jugar Ahora
             </a>
 
-            <!-- Botón para información sobre nosotros -->
-            <a href="{{ route('about.us') }}" 
-               class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition duration-300 text-lg font-semibold">
-                🧑‍💻 Información Sobre Nosotros
-            </a>
-
             <!-- Botón para información sobre personajes -->
             <a href="{{ route('characters.info') }}" 
                class="bg-red-600 text-white px-6 py-3 rounded-lg shadow hover:bg-red-700 transition duration-300 text-lg font-semibold">
                 🌟 Información de Personajes
             </a>
+
+            <!-- Botón para información sobre nosotros -->
+            <button id="about-us-btn" 
+               class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition duration-300 text-lg font-semibold">
+                🧑‍💻 Información Sobre Nosotros
+            </button>
         </div>
+    </div>
+
+    <!-- Aquí va el contenedor donde aparecerá el GIF -->
+    <div id="grinch-gif-container" class="absolute top-1/4 right-10 hidden">
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW02MDI1MHB1cHdnNGFpNGpucDR4eml5bXhkYTFyNjl0N3pzdWs3bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dX4qmW4DV3S6qdx1cU/giphy-downsized-large.gif" alt="Grinch agradeciendo" width="300">
     </div>
 
     <!-- Estilos adicionales -->
@@ -122,4 +127,50 @@
             height: 10px;
         }
     </style>
+
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    document.getElementById('about-us-btn').addEventListener('click', function () {
+        // Mostrar el GIF cuando se haga clic en el botón
+        let gifContainer = document.getElementById('grinch-gif-container');
+        gifContainer.style.display = 'block';
+
+        // Mostrar la ventana emergente de SweetAlert con la información
+        Swal.fire({
+            title: '<h2 style="color: #007bff; font-family: \'Comic Sans MS\', cursive;">🎄 Sobre Nosotros 🎅</h2>',
+            html: `
+                <div style="text-align: left; font-family: 'Comic Sans MS', cursive; color: white;">
+                    <p><strong style="color: #FF5733;">🎨 Paula</strong>: Diseñadora UX/UI con pasión por los colores navideños.</p>
+                    <p><strong style="color: #33FF57;">🖥️ Rafa</strong>: Experto Backend, asegura que todo funcione perfectamente.</p>
+                    <p><strong style="color: #FFC300;">✨ Carlos</strong>: Especialista en Frontend, hace magia en la pantalla.</p>
+                    <p><strong style="color: #C70039;">👨‍🔧 Sergio</strong>: Coordinador y Testing QA, ¡el Grinch de los bugs!</p>
+                </div>
+            `,
+            icon: 'info',
+            showCloseButton: true,
+            showConfirmButton: false,
+            background: 'linear-gradient(135deg, #1b1b1b, #4CAF50)',
+            customClass: {
+                popup: 'custom-swal-popup',
+                title: 'custom-title',
+                htmlContainer: 'custom-html'  // Esta clase puede ayudar con el color de texto
+            }
+        }).then(() => {
+            // Ocultar el GIF después de cerrar la ventana emergente
+            gifContainer.style.display = 'none';
+        });
+    });
+</script>
+
+<style>
+    .custom-title {
+        color: #007bff;  /* Mantener color azul para el título */
+    }
+    .custom-html {
+        color: white;  /* Cambiar el color del texto de la información */
+    }
+</style>
+
 </body>
