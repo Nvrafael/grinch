@@ -25,6 +25,14 @@ Route::post('/dashboard', function (\Illuminate\Http\Request $request) {
 Route::get('/game/start', [GameController::class, 'start'])->name('game.start');
 Route::get('/about/us', [AboutController::class, 'index'])->name('about.us');
 Route::get('/characters/info', [CharacterController::class, 'index'])->name('characters.info');
+// Ruta para mostrar la lista de personajes
+Route::get('/characters', [CharacterController::class, 'index'])->name('characters.index');
+//Ruta para almacenar un personaje nuevo
+Route::post('/characters', [CharacterController::class, 'store'])->name('characters.store');
+//Ruta para eliminar un personaje.
+Route::delete('/characters/{character}', [CharacterController::class, 'destroy'])->name('characters.destroy');
+// Ruta para editar un personaje
+Route::put('/characters/{character}', [CharacterController::class, 'update'])->name('characters.update');
 
 // Ruta para el primer capítulo
 Route::get('/chapter1', function () {
