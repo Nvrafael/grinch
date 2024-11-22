@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CharacterController;
 
 Route::get('/', function () {
     return view('landing');
@@ -16,3 +19,8 @@ Route::post('/dashboard', function (\Illuminate\Http\Request $request) {
     $name = $request->input('name');
     return view('dashboard', compact('name'));
 })->name('dashboard');
+
+
+Route::get('/game/start', [GameController::class, 'start'])->name('game.start');
+Route::get('/about/us', [AboutController::class, 'index'])->name('about.us');
+Route::get('/characters/info', [CharacterController::class, 'index'])->name('characters.info');

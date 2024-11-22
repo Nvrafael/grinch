@@ -2,7 +2,6 @@
 <body class="min-h-screen bg-red-700 relative overflow-hidden flex items-center justify-center text-white">
     <!-- Fondo animado con copos de nieve -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
-        <!-- Copos de nieve -->
         <div class="snowflake"></div>
         <div class="snowflake"></div>
         <div class="snowflake"></div>
@@ -15,29 +14,39 @@
 
     <!-- Contenido principal -->
     <div class="relative z-10 bg-white/90 p-8 rounded-xl shadow-lg text-center max-w-lg">
-        <h1 class="text-5xl font-bold text-green-700 mb-4">
+        <h1 class="text-5xl font-bold text-green-700 mb-6">
             ¡Hola, {{ $name }}!
         </h1>
         <p class="text-xl text-gray-800 mb-6">
             🎄 Bienvenido al Dashboard Navideño 🎅
         </p>
-        <p class="text-lg text-gray-600">
-            ¡Prepárate para disfrutar de una mágica Navidad!
+        <p class="text-lg text-gray-600 mb-8">
+            ¡Elige una opción para continuar!
         </p>
 
-        <!-- Botón para regresar -->
-        <a href="{{ route('landing') }}" 
-           class="mt-6 inline-block bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition duration-300">
-            Volver al inicio
-        </a>
+        <!-- Botones de funcionalidad -->
+        <div class="flex flex-col gap-4">
+            <!-- Botón para jugar -->
+            <a href="{{ route('game.start') }}" 
+               class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition duration-300 text-lg font-semibold">
+                🎮 Jugar Ahora
+            </a>
+
+            <!-- Botón para información sobre nosotros -->
+            <a href="{{ route('about.us') }}" 
+               class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition duration-300 text-lg font-semibold">
+                🧑‍💻 Información Sobre Nosotros
+            </a>
+
+            <!-- Botón para información sobre personajes -->
+            <a href="{{ route('characters.info') }}" 
+               class="bg-red-600 text-white px-6 py-3 rounded-lg shadow hover:bg-red-700 transition duration-300 text-lg font-semibold">
+                🌟 Información de Personajes
+            </a>
+        </div>
     </div>
 
-    <!-- Créditos o mensaje adicional -->
-    <div class="absolute bottom-4 text-sm text-gray-300">
-        <p>🎅 Hecho con amor navideño 🎁</p>
-    </div>
-
-    <!-- Estilos CSS para las animaciones -->
+    <!-- Estilos adicionales -->
     <style>
         /* Fondo animado con copos de nieve */
         @keyframes fall {
@@ -61,7 +70,6 @@
             animation: fall linear infinite;
         }
 
-        /* Variaciones de los copos */
         .snowflake:nth-child(1) {
             left: 10%;
             animation-duration: 4s;
