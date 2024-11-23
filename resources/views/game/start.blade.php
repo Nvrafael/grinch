@@ -102,9 +102,9 @@
 
             <!-- Botón para continuar -->
             <div class="mt-6">
-            <a href="{{ route('chapter1') }}" 
-            class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition duration-300 text-lg font-semibold">
-            🎮 Comenzar Aventura
+            <a href="{{ route('game.chapter', ['chapter' => 'chapter1']) }}" 
+   class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition duration-300 text-lg font-semibold">
+   🎮 Comenzar Aventura
 </a>
             </div>
         </div>
