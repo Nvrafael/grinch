@@ -1,102 +1,55 @@
 <head>
     <link href="{{ mix('resources/css/app.css') }}" rel="stylesheet">
     <style>
-        /* Animación para burbujas de colores flotando */
-        @keyframes floatBubbles {
+        /* Fondo con gradiente estático navideño */
+        body {
+            background: linear-gradient(135deg, #ff0000, #00cc66, #ffcc00);
+            background-size: cover;
+            overflow: hidden;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        /* Animación de caída */
+        @keyframes fall {
             0% {
-                transform: translateY(0) scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(-40px) scale(1.2);
+                transform: translateY(-100px);
                 opacity: 1;
             }
             100% {
-                transform: translateY(0) scale(1);
-                opacity: 0.8;
+                transform: translateY(110vh);
+                opacity: 0;
             }
         }
 
-        /* Estilos para las burbujas */
-        .bubble {
+        /* Estilo de los emoticonos navideños */
+        .emoji {
             position: absolute;
-            border-radius: 50%;
-            animation: floatBubbles 4s ease-in-out infinite;
-            z-index: 1; /* Asegura que estén por encima del fondo */
+            font-size: 24px;
+            animation: fall linear infinite;
+            opacity: 0.9;
+            z-index: 0;
         }
 
-        /* Burbujas de diferentes colores y tamaños */
-        .bubble:nth-child(1) {
-            background-color: #ffcc00; /* Dorado */
-            width: 100px;
-            height: 100px;
-            top: 10%;
-            left: 15%;
-            animation-delay: 0s;
+        /* Variantes de tamaño */
+        .emoji.small {
+            font-size: 16px;
+            animation-duration: 6s;
         }
 
-        .bubble:nth-child(2) {
-            background-color: #ff4d4d; /* Rojo */
-            width: 120px;
-            height: 120px;
-            top: 30%;
-            left: 65%;
-            animation-delay: 0.5s;
-        }
-
-        .bubble:nth-child(3) {
-            background-color: #4caf50; /* Verde */
-            width: 90px;
-            height: 90px;
-            top: 50%;
-            left: 25%;
-            animation-delay: 1s;
-        }
-
-        .bubble:nth-child(4) {
-            background-color: #ffffff; /* Blanco */
-            width: 70px;
-            height: 70px;
-            top: 60%;
-            left: 75%;
-            animation-delay: 1.5s;
-        }
-
-        .bubble:nth-child(5) {
-            background-color: #ff80e1; /* Rosa */
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 40%;
-            animation-delay: 2s;
-        }
-
-        .bubble:nth-child(6) {
-            background-color: #0099ff; /* Azul */
-            width: 110px;
-            height: 110px;
-            top: 70%;
-            left: 50%;
-            animation-delay: 2.5s;
+        .emoji.large {
+            font-size: 32px;
+            animation-duration: 10s;
         }
     </style>
 </head>
 
 <body>
-    <!-- Fondo de gradiente navideño -->
-    <div class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-r from-green-500 via-red-500 to-yellow-400">
-        <!-- Burbujas animadas -->
-        <div class="absolute top-0 left-0 right-0 bottom-0 pointer-events-none">
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-            <div class="bubble"></div>
-        </div>
-
-        <!-- Contenido principal -->
-        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md relative z-10">
+    <!-- Fondo animado con emoticonos -->
+    <div class="min-h-screen flex items-center justify-center relative z-10">
+        <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
             <h2 class="text-4xl font-bold text-center text-gray-800 mb-6">
                 ¡Bienvenido al Mundo Navideño!
             </h2>
@@ -107,9 +60,8 @@
             </div>
 
             <!-- Formulario para ingresar el nombre -->
-            <form method="POST" action = "{{route('dashboard')}}">
+            <form method="POST" action="{{ route('dashboard') }}">
                 @csrf
-
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 font-semibold mb-2">Ingresa tu nombre:</label>
                     <input type="text" name="name" id="name" required class="w-full p-3 border-2 border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-600" placeholder="Tu nombre...">
@@ -129,4 +81,28 @@
             </div>
         </div>
     </div>
+
+    <!-- Generador de emoticonos dinámicos -->
+    <script>
+        const emojis = ['🎄', '🎅', '✨', '🎁', '☃️', '❄️']; // Iconos navideños
+        const body = document.body;
+
+        // Función para crear más emojis
+        function createEmoji() {
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+            emoji.style.animationDuration = Math.random() * 3 + 5 + 's'; // Duración de animación
+            emoji.style.top = '-' + Math.random() * 20 + 'px'; // Inicio ligeramente fuera de pantalla
+            emoji.style.fontSize = Math.random() * 20 + 20 + 'px'; // Tamaño aleatorio
+            body.appendChild(emoji);
+
+            // Eliminar emojis después de la animación
+            emoji.addEventListener('animationend', () => emoji.remove());
+        }
+
+        // Crear nuevos emojis cada 150 ms
+        setInterval(createEmoji, 150);
+    </script>
 </body>

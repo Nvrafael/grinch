@@ -10,6 +10,8 @@ Route::get('/', function () {
     return view('landing');
 })->name('landing');
 
+Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard');
+
 // Ruta del Dashboard (GET)
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
