@@ -18,7 +18,7 @@
         <!-- Botón para volver al dashboard -->
         <a href="{{ route('dashboard') }}" 
            class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition duration-300 text-lg font-semibold mt-4 block">
-            ⬅️ Volver al Dashboard
+            ⬅️ Página de inicio
         </a>
         <!-- Botón para volver al inicio del juego -->
         <a href="{{ route('game.start') }}" 
