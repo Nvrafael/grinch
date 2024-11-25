@@ -92,6 +92,7 @@ class GameController extends Controller
         ],
     ];
 
+
     public function showChapter($chapter)
     {
         if (!array_key_exists($chapter, $this->story)) {
@@ -100,12 +101,18 @@ class GameController extends Controller
     
         $chapterData = $this->story[$chapter];
     
+        // Calcular progreso en función del capítulo actual
+        $totalChapters = count($this->story); // Total de capítulos
+        $currentChapterIndex = array_search($chapter, array_keys($this->story)); // Índice del capítulo actual
+        $progress = round(($currentChapterIndex + 1) / $totalChapters * 100); // Progreso en porcentaje
+
         // Si el capítulo no tiene continuación, mostrar mensaje de agradecimiento
         if (collect($chapterData['options'])->every(fn($option) => $option['next'] === null)) {
             return view('game.end'); // Vista para finalizar la historia
         }
     
-        return view('game.chapter', ['chapter' => $chapterData]);
+        // Pasar el progreso a la vista
+        return view('game.chapter', ['chapter' => $chapterData, 'progress' => $progress]);
     }
 
     public function chooseOption(Request $request, $chapter)
@@ -118,3 +125,6 @@ class GameController extends Controller
         return redirect()->route('game.chapter', ['chapter' => $next]);
     }
 }
+
+    
+
