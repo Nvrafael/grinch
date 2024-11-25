@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $chapter['title'] }}</title>
     <link href="{{ mix('resources/css/app.css') }}" rel="stylesheet">
+    <img src="{{ asset('images/grinchinicio.png') }}" alt="Imagen del capítulo" class="chapter-image" />
+
     <style>
         body {
             background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
@@ -34,17 +36,16 @@
             flex-direction: column;
             justify-content: flex-start;
             position: absolute;
-            bottom: 10px; /* Espacio reducido desde el fondo */
+            bottom: 0;
             width: 100%;
-            padding: 5px;
-            box-sizing: border-box;
+            padding: 10px;
         }
 
         .container {
             background-color: rgba(255, 255, 255, 0.9); /* Fondo translúcido */
-            padding: 8px; /* Reducido padding */
-            border-radius: 8px; /* Esquinas más redondeadas */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 100%;
             position: relative;
@@ -54,31 +55,31 @@
 
         h1 {
             color: #2e7d32;
-            font-size: 1.8rem; /* Tamaño reducido */
+            font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 10px; /* Márgenes más pequeños */
+            margin-bottom: 20px;
         }
 
         p {
             color: #333;
-            font-size: 1rem; /* Tamaño de fuente más pequeño */
-            line-height: 1.4;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         .options {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 6px; /* Reducción de espacio entre botones */
+            gap: 10px;
         }
 
         .option-button {
             background-color: #388e3c;
             color: white;
-            padding: 10px 20px; /* Botones más pequeños */
+            padding: 15px 30px;
             border-radius: 25px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -91,13 +92,13 @@
         .return-button {
             background-color: #1976d2;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border-radius: 25px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 12px; /* Espacio reducido para el botón */
+            margin-top: 20px;
         }
 
         .return-button:hover {
@@ -109,17 +110,17 @@
             width: 100%;
             background-color: rgba(0, 0, 0, 0.1);
             border-radius: 20px;
-            margin-top: 5px;
-            padding: 3px; /* Espacio más reducido */
+            margin-top: 10px;
+            padding: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         .progress-bar {
-            height: 10px; /* Barra de progreso más estrecha */
-            background-color: #FF6347; /* Color vibrante */
+            height: 15px;
+            background-color: #FF6347; /* Color naranja-rojo vibrante */
             border-radius: 15px;
-            width: {{ $progress }}%; /* Progreso dinámico */
-            transition: width 0.5s ease-in-out;
+            width: {{ $progress }}%; /* Progreso dinámico basado en el capítulo actual */
+            transition: width 0.5s ease-in-out; /* Transición suave para el cambio de la barra */
         }
     </style>
 </head>

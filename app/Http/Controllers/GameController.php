@@ -15,7 +15,7 @@ class GameController extends Controller
         'chapter1' => [
             'title' => 'Capítulo 1: Una noche de dudas',
             'text' => 'El Grinch se despierta en su cueva, molesto por los ruidos de la Villa Quién. Está cansado de la alegría navideña, pero algo dentro de él le hace dudar.',
-            'image' => 'public/images/grinchinicio.png', //  imagen para este capítulo
+            'image' => 'images/grinchinicio.png', //  imagen para este capítulo
             'options' => [
                 ['text' => '🎄 Decidir robar la Navidad', 'next' => 'chapter2A'],
                 ['text' => '🌟 Bajar a la Villa Quién', 'next' => 'chapter2B'],
