@@ -22,6 +22,8 @@ Route::get('/characters', [CharacterController::class, 'index'])->name('characte
 Route::post('/characters', [CharacterController::class, 'store'])->name('characters.store');
 Route::delete('/characters/{character}', [CharacterController::class, 'destroy'])->name('characters.destroy');
 Route::put('/characters/{character}', [CharacterController::class, 'update'])->name('characters.update');
+Route::put('/characters/{id}', [CharacterController::class, 'update'])->name('characters.update');
+
 
 // Rutas de los capítulos del juego
 Route::get('/game/start', [GameController::class, 'start'])->name('game.start');

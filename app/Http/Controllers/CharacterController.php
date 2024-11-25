@@ -22,33 +22,55 @@ class CharacterController extends Controller
         return redirect()->route('characters.index')->with('success', 'Personaje eliminado correctamente.');
     }   
 
-    public function update(Request $request, Character $character)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+    public function update(Request $request, $id)
+{
+    $character = Character::findOrFail($id);  // Encontrar el personaje por su ID
+
+    // Validar los datos
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'required|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
     ]);
 
-        $character->update([
-            'name' => $request->name,
-            'description' => $request->description,
-    ]);
+    // Actualizar los datos
+    $character->name = $request->name;
+    $character->description = $request->description;
 
-         return redirect()->route('characters.index')->with('success', 'Personaje actualizado correctamente.');
+    // Si hay una nueva imagen, guardarla
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('characters', 'public');
+        $character->image = $imagePath;
     }
+
+    $character->save();
+
+    return redirect()->route('characters.index')->with('success', 'Personaje actualizado correctamente.');
+}
+
+    
     
     public function store(Request $request)
     {
-        $request->validate([
+        // Validar los datos
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
-
-        Character::create([
-            'name' => $request->name,
-            'description' => $request->description,
-        ]);
-
-        return redirect()->route('characters.index')->with('success', 'Personaje añadido correctamente.');
+    
+        // Subir la imagen
+        $imagePath = $request->file('image')->store('characters', 'public'); // 'characters' es el directorio donde se guardará
+    
+        // Crear el personaje
+        $character = new Character();
+        $character->name = $request->name;
+        $character->description = $request->description;
+        $character->image = $imagePath;  // Guardamos la ruta de la imagen en la base de datos
+        $character->save();
+    
+        return redirect()->route('characters.index');
     }
+    
+    
 }
