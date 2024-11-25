@@ -11,7 +11,7 @@
         <div class="snowflake"></div>
         <div class="snowflake"></div>
     </div>
-
+ 
     <!-- Contenido principal -->
     <div class="relative z-10 bg-white/90 p-8 rounded-xl shadow-lg text-center max-w-lg">
         <h1 class="text-5xl font-bold text-green-700 mb-6">
@@ -23,34 +23,34 @@
         <p class="text-lg text-gray-600 mb-8">
             ¡Elige una opción para continuar!
         </p>
-
+ 
         <!-- Botones de funcionalidad -->
         <div class="flex flex-col gap-4">
             <!-- Botón para jugar -->
-            <a href="{{ route('game.start') }}" 
+            <a href="{{ route('game.start') }}"
                class="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition duration-300 text-lg font-semibold">
                 🎮 Jugar Ahora
             </a>
-
+ 
             <!-- Botón para información sobre personajes -->
-            <a href="{{ route('characters.info') }}" 
+            <a href="{{ route('characters.info') }}"
                class="bg-red-600 text-white px-6 py-3 rounded-lg shadow hover:bg-red-700 transition duration-300 text-lg font-semibold">
                 🌟 Información de Personajes
             </a>
-
+ 
             <!-- Botón para información sobre nosotros -->
-            <button id="about-us-btn" 
+            <button id="about-us-btn"
                class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition duration-300 text-lg font-semibold">
                 🧑‍💻 Información Sobre Nosotros
             </button>
         </div>
     </div>
-
+ 
     <!-- Aquí va el contenedor donde aparecerá el GIF -->
     <div id="grinch-gif-container" class="absolute top-1/4 right-10 hidden">
         <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW02MDI1MHB1cHdnNGFpNGpucDR4eml5bXhkYTFyNjl0N3pzdWs3bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dX4qmW4DV3S6qdx1cU/giphy-downsized-large.gif" alt="Grinch agradeciendo" width="300">
     </div>
-
+ 
     <!-- Estilos adicionales -->
     <style>
         /* Fondo animado con copos de nieve */
@@ -64,7 +64,7 @@
                 opacity: 0;
             }
         }
-
+ 
         .snowflake {
             position: absolute;
             top: -10%;
@@ -74,52 +74,52 @@
             border-radius: 50%;
             animation: fall linear infinite;
         }
-
+ 
         .snowflake:nth-child(1) {
             left: 10%;
             animation-duration: 4s;
         }
-
+ 
         .snowflake:nth-child(2) {
             left: 25%;
             animation-duration: 6s;
             width: 12px;
             height: 12px;
         }
-
+ 
         .snowflake:nth-child(3) {
             left: 40%;
             animation-duration: 5s;
             width: 8px;
             height: 8px;
         }
-
+ 
         .snowflake:nth-child(4) {
             left: 55%;
             animation-duration: 7s;
             width: 15px;
             height: 15px;
         }
-
+ 
         .snowflake:nth-child(5) {
             left: 70%;
             animation-duration: 4.5s;
         }
-
+ 
         .snowflake:nth-child(6) {
             left: 85%;
             animation-duration: 6.5s;
             width: 18px;
             height: 18px;
         }
-
+ 
         .snowflake:nth-child(7) {
             left: 95%;
             animation-duration: 5.5s;
             width: 6px;
             height: 6px;
         }
-
+ 
         .snowflake:nth-child(8) {
             left: 50%;
             animation-duration: 4.2s;
@@ -127,7 +127,7 @@
             height: 10px;
         }
     </style>
-
+ 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -136,7 +136,7 @@
         // Mostrar el GIF cuando se haga clic en el botón
         let gifContainer = document.getElementById('grinch-gif-container');
         gifContainer.style.display = 'block';
-
+ 
         // Mostrar la ventana emergente de SweetAlert con la información
         Swal.fire({
             title: '<h2 style="color: #007bff; font-family: \'Comic Sans MS\', cursive;">🎄 Sobre Nosotros 🎅</h2>',
@@ -163,7 +163,7 @@
         });
     });
 </script>
-
+ 
 <style>
     .custom-title {
         color: #007bff;  /* Mantener color azul para el título */
@@ -172,5 +172,5 @@
         color: white;  /* Cambiar el color del texto de la información */
     }
 </style>
-
+ 
 </body>
