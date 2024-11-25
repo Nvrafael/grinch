@@ -60,14 +60,6 @@ class GameController extends Controller
                 ['text' => '🏔️ Regresar a su cueva', 'next' => 'chapter5B'],
             ],
         ],
-        'chapter4B' => [
-            'title' => 'Capítulo 4B: Bienvenido, Grinch',
-            'text' => 'El Grinch decide quedarse con los Quién y descubre que la Navidad no es solo regalos.',
-            'options' => [
-                ['text' => '🌟 Unirse a los Quién', 'next' => 'chapter5C'],
-                ['text' => '🚪 Marcharse y reflexionar', 'next' => 'chapter5D'],
-            ],
-        ],
         'chapter5A' => [
             'title' => 'Capítulo 5A: Transformación completa',
             'text' => 'El Grinch acepta la Navidad y aprende sobre la unión. Ahora sabe que no todo se trata de regalos.',
@@ -76,30 +68,30 @@ class GameController extends Controller
             ],
         ],
         'chapter5B' => [
-        'title' => 'Capítulo 5B: Reflexión del Grinch',
-        'text' => 'El Grinch regresa a su cueva, pero algo le sigue rondando en el corazón. Se da cuenta de que su soledad no lo hace feliz.',
-        'options' => [
-            ['text' => '❤️ Regresar a la Villa Quién para unirse a ellos', 'next' => 'chapter6A'],
-            ['text' => '❌ Seguir aislado en su cueva', 'next' => 'chapter6B'],
+            'title' => 'Capítulo 5B: Reflexión del Grinch',
+            'text' => 'El Grinch regresa a su cueva, pero algo le sigue rondando en el corazón. Se da cuenta de que su soledad no lo hace feliz.',
+            'options' => [
+                ['text' => '❤️ Regresar a la Villa Quién para unirse a ellos', 'next' => 'chapter6A'],
+                ['text' => '❌ Seguir aislado en su cueva', 'next' => 'chapter6B'],
+            ],
         ],
-    ],
-    'chapter6A' => [
-        'title' => 'Capítulo 6A: La Navidad del Grinch',
-        'text' => 'Si el Grinch se queda, se convierte en el héroe de la Navidad. Si sigue aislado, ve la Navidad desde lejos, arrepintiéndose de su decisión.',
-        'options' => [
-            ['text' => '🎉 Reconciliarse con los Quién', 'next' => null],
+        'chapter6A' => [
+            'title' => 'Capítulo 6A: La Navidad del Grinch',
+            'text' => 'Si el Grinch se queda, se convierte en el héroe de la Navidad. Si sigue aislado, ve la Navidad desde lejos, arrepintiéndose de su decisión.',
+            'options' => [
+                ['text' => '🎉 Reconciliarse con los Quién', 'next' => null],
+            ],
         ],
-    ],
-    'chapter6B' => [
-        'title' => 'Capítulo 6B: Una nueva tradición',
-        'text' => 'Si el Grinch acepta a Cindy, se convierte en parte de la tradición navideña. Si huye, descubre que su soledad no trae felicidad.',
-        'options' => [
-            ['text' => '🔄 Volver y cambiar las cosas', 'next' => null],
-            ['text' => '🚶 Alejarse para siempre, dejando su legado como el Grinch que casi salvó la Navidad.', 'next' => null],
+        'chapter6B' => [
+            'title' => 'Capítulo 6B: Una nueva tradición',
+            'text' => 'Si el Grinch acepta a Cindy, se convierte en parte de la tradición navideña. Si huye, descubre que su soledad no trae felicidad.',
+            'options' => [
+                ['text' => '🔄 Volver y cambiar las cosas', 'next' => null],
+                ['text' => '🚶 Alejarse para siempre, dejando su legado como el Grinch que casi salvó la Navidad.', 'next' => null],
+            ],
         ],
-    ],
     ];
-    
+
     public function showChapter($chapter)
     {
         if (!array_key_exists($chapter, $this->story)) {
@@ -114,8 +106,6 @@ class GameController extends Controller
         }
     
         return view('game.chapter', ['chapter' => $chapterData]);
-
-        
     }
 
     public function chooseOption(Request $request, $chapter)
