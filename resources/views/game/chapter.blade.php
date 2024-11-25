@@ -34,16 +34,17 @@
             flex-direction: column;
             justify-content: flex-start;
             position: absolute;
-            bottom: 0;
+            bottom: 10px; /* Espacio reducido desde el fondo */
             width: 100%;
-            padding: 10px;
+            padding: 5px;
+            box-sizing: border-box;
         }
 
         .container {
             background-color: rgba(255, 255, 255, 0.9); /* Fondo translúcido */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 8px; /* Reducido padding */
+            border-radius: 8px; /* Esquinas más redondeadas */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 100%;
             position: relative;
@@ -53,31 +54,31 @@
 
         h1 {
             color: #2e7d32;
-            font-size: 2.5rem;
+            font-size: 1.8rem; /* Tamaño reducido */
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Márgenes más pequeños */
         }
 
         p {
             color: #333;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            font-size: 1rem; /* Tamaño de fuente más pequeño */
+            line-height: 1.4;
+            margin-bottom: 10px;
         }
 
         .options {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 6px; /* Reducción de espacio entre botones */
         }
 
         .option-button {
             background-color: #388e3c;
             color: white;
-            padding: 15px 30px;
+            padding: 10px 20px; /* Botones más pequeños */
             border-radius: 25px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -90,13 +91,13 @@
         .return-button {
             background-color: #1976d2;
             color: white;
-            padding: 15px 30px;
+            padding: 10px 20px;
             border-radius: 25px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 20px;
+            margin-top: 12px; /* Espacio reducido para el botón */
         }
 
         .return-button:hover {
@@ -108,17 +109,17 @@
             width: 100%;
             background-color: rgba(0, 0, 0, 0.1);
             border-radius: 20px;
-            margin-top: 10px;
-            padding: 5px;
+            margin-top: 5px;
+            padding: 3px; /* Espacio más reducido */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
         .progress-bar {
-            height: 15px;
-            background-color: #FF6347; /* Color naranja-rojo vibrante */
+            height: 10px; /* Barra de progreso más estrecha */
+            background-color: #FF6347; /* Color vibrante */
             border-radius: 15px;
-            width: {{ $progress }}%; /* Progreso dinámico basado en el capítulo actual */
-            transition: width 0.5s ease-in-out; /* Transición suave para el cambio de la barra */
+            width: {{ $progress }}%; /* Progreso dinámico */
+            transition: width 0.5s ease-in-out;
         }
     </style>
 </head>
