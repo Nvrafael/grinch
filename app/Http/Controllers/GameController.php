@@ -34,7 +34,7 @@ class GameController extends Controller
             'text' => 'El Grinch camina hacia la Villa Quién y se encuentra con Cindy Lou, quien lo invita a una fiesta de Navidad.',
             'options' => [
                 ['text' => '🎉 Aceptar la invitación y asistir a la fiesta', 'next' => 'chapter3B'],
-                ['text' => '👀 Espiar la fiesta desde las sombras', 'next' => 'chapter3D'],
+                ['text' => '👀 Espiar la fiesta desde las sombras', 'next' => 'chapter3B'],
             ],
         ],
         'chapter3A' => [

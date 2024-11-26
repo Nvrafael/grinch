@@ -7,27 +7,75 @@
     <title>Gestión de Personajes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Fondo azul */
         body {
-            background: url('https://cdn.pixabay.com/photo/2017/12/12/10/51/snow-3013916_960_720.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background-color: #1E3A8A; /* Tono azul */
         }
 
-        .btn-animated:hover {
-            transform: translateY(-5px);
-            transition: all 0.2s ease-in-out;
+        /* Animación para simular nieve cayendo */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background-color: white;
+            opacity: 0.9;
+            animation: snow 10s linear infinite;
         }
 
-        .group:hover .group-hover\:scale-105 {
-            transform: scale(1.05);
+        /* Animación de nieve */
+        @keyframes snow {
+            0% {
+                top: -10px;
+                transform: translateX(0);
+            }
+            100% {
+                top: 100vh;
+                transform: translateX(20px);
+            }
         }
 
-        .group:hover .group-hover\:opacity-100 {
-            opacity: 1;
+        /* Generar nieve en diferentes tamaños y formas */
+        .snowflake:nth-child(odd) {
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation-duration: 12s;
+        }
+
+        .snowflake:nth-child(even) {
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation-duration: 10s;
+        }
+
+        /* Nieve más pequeña para algunos copos */
+        .snowflake.smaller {
+            width: 8px;
+            height: 8px;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         }
     </style>
 </head>
 
-<body class="min-h-screen text-white font-sans">
+<body class="min-h-screen text-white font-sans relative overflow-hidden">
+
+    <!-- Efecto de nieve -->
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-10">
+        <!-- Creamos un fondo con nieve cayendo -->
+        <div class="snowflake" style="left: 10%;"></div>
+        <div class="snowflake" style="left: 20%;"></div>
+        <div class="snowflake smaller" style="left: 30%;"></div>
+        <div class="snowflake" style="left: 40%;"></div>
+        <div class="snowflake smaller" style="left: 50%;"></div>
+        <div class="snowflake" style="left: 60%;"></div>
+        <div class="snowflake smaller" style="left: 70%;"></div>
+        <div class="snowflake" style="left: 80%;"></div>
+        <div class="snowflake" style="left: 90%;"></div>
+        <!-- Más nieve si es necesario -->
+    </div>
+
     <div class="container mx-auto p-6">
         <!-- Botón para volver al dashboard -->
         <div class="text-right mb-4">
@@ -60,7 +108,7 @@
                     <tr class="odd:bg-red-100 even:bg-red-50">
                         <td class="px-4 py-2 flex items-center space-x-4">
                             <div class="relative group">
-                                <img src="{{ asset('storage/' . $character->image) }}" alt="{{ $character->name }}"
+                                <img src="{{ asset('storage/' . $character->image) }}" alt="{{ $character->name }} "
                                      class="w-16 h-16 object-cover rounded-full border-2 border-gray-300 group-hover:scale-105 transition-transform duration-300">
                                 <!-- Información flotante -->
                                 <div class="absolute left-20 top-1/2 transform -translate-y-1/2 w-64 p-4 bg-white shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
@@ -123,7 +171,7 @@
         </div>
     </div>
 
-    <!-- Modal para añadir personaje -->
+    <!-- Modal de Añadir Personaje -->
     <div id="addCharacterModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
         <div class="bg-white p-6 rounded-lg shadow-lg w-96">
             <h3 class="text-2xl font-bold mb-4">Añadir Personaje</h3>
@@ -131,13 +179,11 @@
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700">Nombre</label>
-                    <input type="text" name="name" id="name" required
-                           class="w-full text-black bg-white border border-gray-300 p-2 rounded-md">
+                    <input type="text" name="name" id="name" required class="w-full text-black bg-white border border-gray-300 p-2 rounded-md">
                 </div>
                 <div class="mb-4">
                     <label for="description" class="block text-gray-700">Descripción</label>
-                    <textarea name="description" id="description" required
-                              class="w-full text-black bg-white border border-gray-300 p-2 rounded-md"></textarea>
+                    <textarea name="description" id="description" required class="w-full text-black bg-white border border-gray-300 p-2 rounded-md"></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="image" class="block text-gray-700">Imagen</label>
