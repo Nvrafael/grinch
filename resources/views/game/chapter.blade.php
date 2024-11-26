@@ -122,10 +122,37 @@
             width: {{ $progress }}%; /* Progreso dinámico basado en el capítulo actual */
             transition: width 0.5s ease-in-out; /* Transición suave para el cambio de la barra */
         }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .chapter-image {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        body {
+            background: linear-gradient(135deg, rgba(34, 193, 195, 0.8), rgba(253, 187, 45, 0.8));
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+
     </style>
 </head>
 <body>
     <div class="background-pattern"></div>
+
+    <div class="image-container">
+    <img src="{{ asset('images/grinchinicio.png') }}" alt="Imagen del capítulo" class="chapter-image">
+    </div>
 
     <div class="content-wrapper">
         <!-- Barra de progreso -->
