@@ -134,7 +134,7 @@
     <div class="background-pattern"></div>
 
     <div class="image-container">
-    <img src="{{ asset('images/grinchinicio.png') }}" alt="Imagen del capítulo" class="chapter-image">
+    
     </div>
 
     <div class="content-wrapper">

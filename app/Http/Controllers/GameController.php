@@ -72,7 +72,7 @@ class GameController extends Controller
         'chapter4B' => [
              'title' => ' Un descubrimiento inesperado',
              'text' => 'El Grinch, oculto en las sombras, escucha una conversación entre Cindy Lou y el alcalde de la Villa Quién. Hablan sobre cómo la Navidad no se trata de regalos, sino de estar juntos y compartir amor. Sin embargo, Cindy menciona que alguien solitario, como el Grinch, también merece felicidad. Estas palabras despiertan una chispa en el corazón del Grinch.',
-            'image' => 'images/cindy_talk.png',
+            'image' => 'images/chapters/chapter4B.png',
             'options' => [
                 ['text' => '🌟 Decidir acercarse a Cindy Lou para hablar con ella', 'next' => 'chapter6B'],
                 ['text' => '👀 Permanecer escondido y seguir escuchando', 'next' => 'chapter5B'],
@@ -80,16 +80,17 @@ class GameController extends Controller
 ],
         'chapter5A' => [
             'title' => ' Transformación completa',
-            'text' => 'El Grinch acepta la Navidad y aprende sobre la unión. Ahora sabe que no todo se trata de regalos.',
-            'image'=>'images/grinch.png',
+            'text' => 'El Grinch acepta la Navidad y aprende sobre la unión. Ahora sabe que no todo se trata de regalos, pero Cindy quiere hablar con el',
+            'image'=>'images/chapters/chapter5A.png',
             'options' => [
                 ['text' => '🎄 Celebrar la Navidad con los Quién', 'next' => 'chapter6A'],
+                ['text' => '🎄 Hablar con Cindy y aceptar la Navidad', 'next' => 'chapter6B'],
             ],
         ],
         'chapter5B' => [
             'title' => ' Reflexión del Grinch',
             'text' => 'El Grinch regresa a su cueva, pero algo le sigue rondando en el corazón. Se da cuenta de que su soledad no lo hace feliz.',
-            'image'=>'images/grinch.png',
+            'image'=>'images/chapters/chapter5B.png',
             'options' => [
                 ['text' => '❤️ Regresar a la Villa Quién para unirse a ellos', 'next' => 'chapter6A'],
                 ['text' => '❌ Seguir aislado en su cueva', 'next' => 'chapter6B'],
@@ -98,15 +99,16 @@ class GameController extends Controller
         'chapter6A' => [
             'title' => ' La Navidad del Grinch',
             'text' => 'Si el Grinch se queda, se convierte en el héroe de la Navidad. Si sigue aislado, ve la Navidad desde lejos, arrepintiéndose de su decisión.',
-            'image'=>'images/grinch.png',
+            'image'=>'images/chapters/chapter6A.png',
             'options' => [
                 ['text' => '🎉 Reconciliarse con los Quién', 'next' => 'chapter7A'],
+                ['text' => '🎄 Regresar a la cueva', 'next' => 'chapter7B'],
             ],
         ],
         'chapter6B' => [
             'title' => 'Una nueva tradición',
-            'text' => 'Si el Grinch acepta a Cindy, se convierte en parte de la tradición navideña. Si huye, descubre que su soledad no trae felicidad.',
-            'image'=>'images/grinch.png',
+            'text' => 'Después de hablar con Cindy, acepta la navidad y se convierte en parte de la tradición navideña. Si huye, descubre que su soledad no trae felicidad.',
+            'image'=>'images/chapters/chapter6B.png',
             'options' => [
                 ['text' => '🔄 Volver y cambiar las cosas', 'next' => 'chapter7A'],
                 ['text' => '🚶 Alejarse para siempre, dejando su legado como el Grinch que casi salvó la Navidad.', 'next' => 'chapter7B'],      
@@ -115,7 +117,7 @@ class GameController extends Controller
         'chapter7A' => [
             'title' => ' El Grinch da un paso inesperado',
             'text' => 'El Grinch, motivado por un nuevo sentimiento, decide devolver un pequeño regalo a la villa como señal de paz. La reacción de los Quién lo deja sorprendido.',
-            'image' => 'images/regalo_puerta.png',
+            'image' => 'images/chapters/chapter7A.png',
             'options' => [
                 ['text' => '🎁 Continuar devolviendo más regalos', 'next' => 'chapter8A'],
                 ['text' => '👀 Observar la reacción de lejos', 'next' => 'chapter8B'],
@@ -124,7 +126,7 @@ class GameController extends Controller
         'chapter7B' => [
             'title' => ' Más frío que la nieve',
             'text' => 'El Grinch decide que la Navidad y la felicidad no son para él. Su corazón parece volverse aún más frío mientras observa cómo los Quién celebran de todos modos.',
-            'image' => 'images/grinch_frio.png',
+            'image' => 'images/chapters/chapter7B.png',
             'options' => [
                 ['text' => '🔄 Reconsiderar sus acciones y descender a la villa', 'next' => 'chapter9A'],
                 ['text' => '🏔️ Permanecer solo en la cueva', 'next' => 'chapter9B'],
@@ -159,7 +161,7 @@ class GameController extends Controller
         'chapter9B' => [
             'title' => ' El observador solitario',
             'text' => 'El Grinch decide no unirse a la fiesta, pero ve desde lejos cómo la Navidad une a todos. Aunque sigue aislado, siente un poco de calidez.',
-            'image' => 'images/observador.png',
+            'image' => 'images/chapters/chapter9B.png',
             'options' => [
                 ['text' => '🔄 Cambiar de opinión y bajar a la villa', 'next' => 'chapter9A'],
                 ['text' => '🏔️ Permanecer en su cueva, reflexionando', 'next' => 'chapter9A'],
