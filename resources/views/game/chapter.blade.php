@@ -5,145 +5,200 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $chapter['title'] }}</title>
     <link href="{{ mix('resources/css/app.css') }}" rel="stylesheet">
-   
-
 
     <style>
-    body {
-        background: linear-gradient(135deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-        background-size: cover;
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
+        body {
+            background: linear-gradient(135deg, #b5e48c, #f0f3bd); /* Verde suave y un toque de dorado */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
 
-    .background-pattern {
-        background-image: url('{{ asset($chapter['image']) }}');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 80%; /* Ocupa un 70% de la pantalla */
-        z-index: -1;
-    }
+        .background-pattern {
+            background-image: url('{{ asset($chapter['image']) }}');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center top;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            z-index: -1;
+            opacity: 0.6;
+        }
 
-    /* Contenedor principal en la parte inferior */
-    .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 10px;
-        z-index: 1;
-    }
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 15px;
+            z-index: 1;
+        }
 
-    .container {
-        background-color: rgba(255, 255, 255, 0.9); /* Fondo translúcido */
-        padding: 5px; /* Reducción de padding para hacerlo más pequeño */
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        width: 100%; /* Ocupa todo el ancho de la pantalla */
-        max-width: 100%; /* No limitar ancho */
-        height: 20%; /* Altura más pequeña para no ocupar mucho espacio */
-        position: relative;
-        box-sizing: border-box;
-        overflow-y: auto; /* Permite desplazarse si hay demasiado contenido */
-    }
+        .container {
+            background: radial-gradient(circle, #f9e4b7 0%, #d1b68d 100%); /* Fondo en tonos dorados */
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            width: 85%; /* Ajuste de tamaño */
+            max-width: 100%;
+            height: auto;
+            overflow-y: auto;
+            margin: 0 auto;
+            max-height: 60%; /* Reducida la altura */
+            border: 4px solid #d3b093;
+            border-image-source: linear-gradient(45deg, #d1b68d, #b5e48c);
+            border-image-slice: 1;
+            position: relative;
+        }
 
-    h1 {
-        color: #2e7d32;
-        font-size: 2rem; /* Título más pequeño */
-        text-align: center;
-        margin-bottom: 10px; /* Reducción de espacio */
-    }
+        h1 {
+            color: #8d3f2f; /* Color rojo oscuro para el título */
+            font-size: 2rem; /* Tamaño reducido */
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
 
-    p {
-        color: #333;
-        font-size: 1rem; /* Fuente más pequeña para el texto */
-        line-height: 1.4;
-        margin-bottom: 10px; /* Reducción de espacio */
-    }
+        p {
+            color: #4a4a4a; /* Gris oscuro para un contraste sutil */
+            font-size: 1rem; /* Tamaño de fuente reducido */
+            line-height: 1.5;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
 
-    .options {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px; /* Espacio entre botones más pequeño */
-    }
+        .options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px; /* Reducción del espacio entre botones */
+            margin-top: 10px;
+        }
 
-    .option-button {
-        background-color: #388e3c;
-        color: white;
-        padding: 12px 25px; /* Botones más pequeños */
-        border-radius: 25px;
-        font-size: 1rem;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
+        .option-button {
+            background: linear-gradient(145deg, #5f9c6d, #3e6e4d); /* Verde esmeralda */
+            color: white;
+            padding: 10px 20px; /* Ajuste de padding */
+            border-radius: 20px; /* Redondeo más sutil */
+            font-size: 0.9rem; /* Tamaño reducido */
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            border: 2px solid #7da173;
+            overflow: hidden;
+            z-index: 1;
+        }
 
-    .option-button:hover {
-        background-color: #2c6e31;
-    }
+        .option-button::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.5), rgba(0, 128, 0, 0.5));
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0.5;
+        }
 
-    .return-button {
-        background-color: #1976d2;
-        color: white;
-        padding: 12px 25px; /* Botón más pequeño */
-        border-radius: 25px;
-        font-size: 1rem;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-top: 10px;
-    }
+        .option-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #4a9c5b, #3c6e3e);
+        }
 
-    .return-button:hover {
-        background-color: #1565c0;
-    }
+        .return-button {
+            background: linear-gradient(145deg, #e07b7b, #d84c4c); /* Rojo cálido */
+            color: white;
+            padding: 10px 20px; /* Ajuste de padding */
+            border-radius: 20px;
+            font-size: 0.9rem; /* Tamaño reducido */
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            margin-top: 15px; /* Ajuste de margen */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            border: 2px solid #cf4f4f;
+            overflow: hidden;
+            z-index: 1;
+        }
 
-    /* Barra de progreso */
-    .progress-container {
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 20px;
-        margin-top: 10px;
-        padding: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    }
+        .return-button::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 99, 71, 0.5), rgba(255, 87, 34, 0.5));
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0.5;
+        }
 
-    .progress-bar {
-        height: 15px;
-        background-color: #FF6347; /* Color naranja-rojo vibrante */
-        border-radius: 15px;
-        width: {{ $progress }}%; /* Progreso dinámico basado en el capítulo actual */
-        transition: width 0.5s ease-in-out; /* Transición suave para el cambio de la barra */
-    }
-</style>
+        .return-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(145deg, #d05858, #a03e3e);
+        }
 
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0; /* Gris claro para la barra */
+            border-radius: 25px;
+            padding: 3px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 15px;
+            position: relative;
+            border: 2px solid #d1d1d1;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #34c759; /* Verde brillante */
+            border-radius: 20px;
+            width: {{ $progress }}%;
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 0 8px 1px rgba(52, 199, 89, 0.8);
+            position: relative;
+        }
+
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            line-height: 20px;
+            color: #333;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    </style>
 </head>
 <body>
     <div class="background-pattern"></div>
 
-    <div class="image-container">
-    
-    </div>
-
     <div class="content-wrapper">
-        <!-- Barra de progreso -->
         <div class="progress-container">
-            <div class="progress-bar"></div>
+            <div class="progress-bar">
+                <div class="progress-text">{{ $progress }}%</div>
+            </div>
         </div>
 
-        <!-- Contenedor del contenido -->
         <div class="container">
             <h1>{{ $chapter['title'] }}</h1>
             <p>{{ $chapter['text'] }}</p>
@@ -159,8 +214,7 @@
                 </div>
             </form>
 
-            <!-- Botón para volver al dashboard -->
-            <div class="text-center mt-4">
+            <div class="text-center">
                 <a href="{{ route('dashboard') }}" class="return-button">⬅️ Página de inicio</a>
             </div>
         </div>

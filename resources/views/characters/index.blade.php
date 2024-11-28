@@ -148,7 +148,7 @@
                     <tr>
                         <th>Imagen</th>
                         <th>Nombre</th>
-                        <th>Acciones</th>
+                        <th>Descripción</th>
                     </tr>
                 </thead>
                 <tbody>
