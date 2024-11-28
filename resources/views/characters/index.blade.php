@@ -4,161 +4,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Personajes</title>
+    <title>🎄 Gestión de Personajes 🎅</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Fondo azul */
+        /* Fondo animado con gradiente navideño */
         body {
-            background-color: #1E3A8A; /* Tono azul */
+            background: linear-gradient(90deg, #8E44AD, #3498DB, #2ECC71, #E74C3C);
+            background-size: 300% 300%;
+            animation: gradientBG 10s ease infinite;
+            font-family: 'Verdana', sans-serif;
+            color: #FDFEFE;
+            margin: 0;
+            height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Animación para simular nieve cayendo */
-        .snowflake {
-            position: absolute;
-            top: -10px;
-            background-color: white;
-            opacity: 0.9;
-            animation: snow 10s linear infinite;
-        }
-
-        /* Animación de nieve */
-        @keyframes snow {
+        @keyframes gradientBG {
             0% {
-                top: -10px;
-                transform: translateX(0);
+                background-position: 0% 50%;
             }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
             100% {
-                top: 100vh;
-                transform: translateX(20px);
+                background-position: 0% 50%;
             }
         }
 
-        /* Generar nieve en diferentes tamaños y formas */
-        .snowflake:nth-child(odd) {
-            width: 12px;
-            height: 12px;
-            background-color: #fff;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            animation-duration: 12s;
+        /* Botones */
+        .button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .snowflake:nth-child(even) {
-            width: 10px;
-            height: 10px;
-            background-color: #fff;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            animation-duration: 10s;
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Nieve más pequeña para algunos copos */
-        .snowflake.smaller {
-            width: 8px;
-            height: 8px;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        .btn-add {
+            background-color: #2ECC71;
+            color: white;
+        }
+
+        .btn-edit {
+            background-color: #F39C12;
+            color: white;
+        }
+
+        .btn-delete {
+            background-color: #E74C3C;
+            color: white;
+        }
+
+        .btn-back {
+            background-color: #3498DB;
+            color: white;
+        }
+
+        /* Tablas */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        th {
+            background-color: #34495E;
+            color: #FDFEFE;
+            text-align: left;
+            padding: 12px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #BDC3C7;
+        }
+
+        td {
+            text-align: center;
+            padding: 12px;
+        }
+
+        /* Estilo para modales */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 50;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            color: black;
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #2C3E50;
+        }
+
+        label,
+        input,
+        textarea {
+            color: black;
         }
     </style>
 </head>
 
-<body class="min-h-screen text-white font-sans relative overflow-hidden">
-
-    <!-- Efecto de nieve -->
-    <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-10">
-        <!-- Creamos un fondo con nieve cayendo -->
-        <div class="snowflake" style="left: 10%;"></div>
-        <div class="snowflake" style="left: 20%;"></div>
-        <div class="snowflake smaller" style="left: 30%;"></div>
-        <div class="snowflake" style="left: 40%;"></div>
-        <div class="snowflake smaller" style="left: 50%;"></div>
-        <div class="snowflake" style="left: 60%;"></div>
-        <div class="snowflake smaller" style="left: 70%;"></div>
-        <div class="snowflake" style="left: 80%;"></div>
-        <div class="snowflake" style="left: 90%;"></div>
-        <!-- Más nieve si es necesario -->
-    </div>
-
+<body>
     <div class="container mx-auto p-6">
-        <!-- Botón para volver al dashboard -->
         <div class="text-right mb-4">
-            <a href="{{ route('dashboard') }}" 
-               class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition duration-300 text-lg font-semibold">
+            <a href="{{ route('dashboard') }}" class="button btn-back">
                 ⬅️ Página de inicio
             </a>
         </div>
 
-        <h1 class="text-4xl font-bold text-center mb-8 text-black">🎄 Gestión de Personajes 🎅</h1>
+        <h1 class="text-4xl font-bold text-center mb-8">🎄 Gestión de Personajes 🎅</h1>
 
-        <!-- Botón para abrir el modal de Añadir Personaje -->
-        <button class="btn-animated bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg mb-6 shadow-lg"
-                data-modal-toggle="addCharacterModal">
+        <!-- Botón de añadir personaje -->
+        <button class="button btn-add" onclick="toggleModal('addCharacterModal')">
             ➕ Añadir Personaje
         </button>
 
         <!-- Tabla de personajes -->
-        <div class="overflow-x-auto bg-white rounded-lg shadow-lg">
-            <table class="w-full text-gray-700">
-                <thead class="bg-red-500 text-white">
+        <div class="overflow-x-auto rounded-lg mt-6">
+            <table>
+                <thead>
                     <tr>
-                        <th class="px-4 py-2">Imagen</th>
-                        <th class="px-4 py-2">Nombre</th>
-                        <th class="px-4 py-2">Acciones</th>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($characters as $character)
-                    <tr class="odd:bg-red-100 even:bg-red-50">
-                        <td class="px-4 py-2 flex items-center space-x-4">
-                            <div class="relative group">
-                                <img src="{{ asset('storage/' . $character->image) }}" alt="{{ $character->name }} "
-                                     class="w-16 h-16 object-cover rounded-full border-2 border-gray-300 group-hover:scale-105 transition-transform duration-300">
-                                <!-- Información flotante -->
-                                <div class="absolute left-20 top-1/2 transform -translate-y-1/2 w-64 p-4 bg-white shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                                    <h4 class="font-bold text-lg text-gray-800">{{ $character->name }}</h4>
-                                    <p class="text-sm text-gray-600">{{ $character->description }}</p>
-                                </div>
-                            </div>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('storage/' . $character->image) }}" alt="{{ $character->name }}"
+                                class="w-16 h-16 object-cover rounded-full mx-auto">
                         </td>
-                        <td class="px-4 py-2">{{ $character->name }}</td>
-                        <td class="px-4 py-2 text-center space-x-2">
-                            <!-- Botón para editar -->
-                            <button class="btn-animated bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md"
-                                    data-modal-toggle="editCharacterModal{{ $character->id }}">
+                        <td>{{ $character->name }}</td>
+                        <td>
+                            <!-- Botón de ver descripción -->
+                            <button class="button btn-edit" onclick="toggleModal('viewCharacterModal{{ $character->id }}')">
+                                👁️ Ver Descripción
+                            </button>
+                            <!-- Botón de editar -->
+                            <button class="button btn-edit" onclick="toggleModal('editCharacterModal{{ $character->id }}')">
                                 ✏️ Editar
                             </button>
-                            <!-- Modal de Edición -->
-                            <div id="editCharacterModal{{ $character->id }}" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                                <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-                                    <h3 class="text-2xl font-bold mb-4">Editar Personaje</h3>
-                                    <form action="{{ route('characters.update', $character->id) }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="mb-4">
-                                            <label for="name" class="block text-gray-700">Nombre</label>
-                                            <input type="text" name="name" id="name" value="{{ $character->name }}" required
-                                                   class="w-full text-black bg-white border border-gray-300 p-2 rounded-md">
-                                        </div>
-                                        <div class="mb-4">
-                                            <label for="description" class="block text-gray-700">Descripción</label>
-                                            <textarea name="description" id="description" required
-                                                      class="w-full text-black bg-white border border-gray-300 p-2 rounded-md">{{ $character->description }}</textarea>
-                                        </div>
-                                        <div class="mb-4">
-                                            <label for="image" class="block text-gray-700">Imagen</label>
-                                            <input type="file" name="image" id="image" accept="image/*"
-                                                   class="w-full text-black bg-white border border-gray-300 p-2 rounded-md">
-                                        </div>
-                                        <div class="flex justify-end space-x-2">
-                                            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md">Actualizar</button>
-                                            <button type="button" class="bg-red-500 text-white px-4 py-2 rounded-md"
-                                                    onclick="toggleModal('editCharacterModal{{ $character->id }}')">Cerrar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+
                             <!-- Formulario para eliminar -->
                             <form action="{{ route('characters.destroy', $character->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn-animated bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
+                                <button class="button btn-delete"
                                         onclick="return confirm('¿Estás seguro de eliminar este personaje?')">
                                     🗑️ Eliminar
                                 </button>
@@ -171,33 +186,73 @@
         </div>
     </div>
 
-    <!-- Modal de Añadir Personaje -->
-    <div id="addCharacterModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h3 class="text-2xl font-bold mb-4">Añadir Personaje</h3>
+    <!-- Modal de añadir personaje -->
+    <div id="addCharacterModal" class="hidden modal">
+        <div class="modal-content">
+            <h3 class="modal-header">Añadir Personaje</h3>
             <form action="{{ route('characters.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700">Nombre</label>
-                    <input type="text" name="name" id="name" required class="w-full text-black bg-white border border-gray-300 p-2 rounded-md">
+                    <input type="text" name="name" id="name" required class="w-full border border-gray-300 p-2 rounded-md">
                 </div>
                 <div class="mb-4">
                     <label for="description" class="block text-gray-700">Descripción</label>
-                    <textarea name="description" id="description" required class="w-full text-black bg-white border border-gray-300 p-2 rounded-md"></textarea>
+                    <textarea name="description" id="description" required class="w-full border border-gray-300 p-2 rounded-md"></textarea>
                 </div>
                 <div class="mb-4">
                     <label for="image" class="block text-gray-700">Imagen</label>
-                    <input type="file" name="image" id="image" required accept="image/*"
-                           class="w-full text-black bg-white border border-gray-300 p-2 rounded-md">
+                    <input type="file" name="image" id="image" accept="image/*" class="w-full border border-gray-300 p-2 rounded-md">
                 </div>
                 <div class="flex justify-end space-x-2">
-                    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-md">Añadir</button>
-                    <button type="button" class="bg-red-500 text-white px-4 py-2 rounded-md"
-                            onclick="toggleModal('addCharacterModal')">Cerrar</button>
+                    <button type="submit" class="button btn-add">Añadir</button>
+                    <button type="button" class="button btn-delete" onclick="toggleModal('addCharacterModal')">Cerrar</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- Modal para ver descripción -->
+    @foreach($characters as $character)
+    <div id="viewCharacterModal{{ $character->id }}" class="hidden modal">
+        <div class="modal-content">
+            <h3 class="modal-header">Descripción de {{ $character->name }}</h3>
+            <p>{{ $character->description }}</p>
+            <div class="flex justify-end space-x-2">
+                <button type="button" class="button btn-delete" onclick="toggleModal('viewCharacterModal{{ $character->id }}')">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+    <!-- Modal de edición para cada personaje -->
+    @foreach($characters as $character)
+    <div id="editCharacterModal{{ $character->id }}" class="hidden modal">
+        <div class="modal-content">
+            <h3 class="modal-header">Editar Personaje</h3>
+            <form action="{{ route('characters.update', $character->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700">Nombre</label>
+                    <input type="text" name="name" id="name" value="{{ $character->name }}" required class="w-full border border-gray-300 p-2 rounded-md">
+                </div>
+                <div class="mb-4">
+                    <label for="description" class="block text-gray-700">Descripción</label>
+                    <textarea name="description" id="description" required class="w-full border border-gray-300 p-2 rounded-md">{{ $character->description }}</textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="image" class="block text-gray-700">Imagen</label>
+                    <input type="file" name="image" id="image" accept="image/*" class="w-full border border-gray-300 p-2 rounded-md">
+                </div>
+                <div class="flex justify-end space-x-2">
+                    <button type="submit" class="button btn-add">Actualizar</button>
+                    <button type="button" class="button btn-delete" onclick="toggleModal('editCharacterModal{{ $character->id }}')">Cerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    @endforeach
 
     <!-- JavaScript -->
     <script>
@@ -205,13 +260,6 @@
             const modal = document.getElementById(modalId);
             modal.classList.toggle('hidden');
         }
-
-        document.querySelectorAll('[data-modal-toggle]').forEach(button => {
-            button.addEventListener('click', () => {
-                const modalId = button.getAttribute('data-modal-toggle');
-                toggleModal(modalId);
-            });
-        });
     </script>
 </body>
 
