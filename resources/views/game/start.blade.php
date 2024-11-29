@@ -8,14 +8,14 @@
     <style>
         /* Fondo dinámico con gradiente animado navideño */
         body {
-            background: linear-gradient(45deg, #A70D2A, #E63946, #F4A261, #E9C46A, #2A9D8F);
+            background: linear-gradient(45deg, #A70D2A, #B22222, #F4A261, #E9C46A, #228B22);
             background-size: 400% 400%;
             animation: gradientBackground 12s ease infinite;
-            color: white;
+            color: #FDFDFD;
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            overflow: hidden; /* Evita el scroll */
-            margin: 0;       /* Elimina posibles márgenes */
-            height: 100vh;   /* Fuerza la altura total de la ventana */
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
         }
 
         @keyframes gradientBackground {
@@ -29,14 +29,14 @@
             border: 2px solid transparent;
             border-radius: 15px;
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 50px rgba(0, 255, 0, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 255, 127, 0.5);
             transition: box-shadow 0.3s ease-in-out, transform 0.3s;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
         }
 
         .neon-container:hover {
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.9), 0 0 60px rgba(0, 255, 0, 0.7);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.9), 0 0 60px rgba(50, 205, 50, 0.7);
             transform: scale(1.02);
         }
 
@@ -44,9 +44,9 @@
         .neon-btn {
             display: inline-block;
             text-align: center;
-            color: white;
+            color: #FDFDFD;
             background: transparent;
-            border: 2px solid white;
+            border: 2px solid #FDFDFD;
             border-radius: 8px;
             padding: 0.75rem 1.5rem;
             font-size: 1.2rem;
@@ -55,32 +55,32 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             cursor: pointer;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
         }
 
         .neon-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
         }
 
         .neon-btn-primary {
-            border-color: #00FF00; /* Verde navideño */
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+            border-color: #32CD32; /* Verde neón */
+            text-shadow: 0 0 15px rgba(50, 205, 50, 0.9);
         }
 
         .neon-btn-primary:hover {
-            color: #00FF00;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 40px rgba(0, 255, 0, 0.5);
+            color: #32CD32;
+            box-shadow: 0 0 25px rgba(50, 205, 50, 0.8), 0 0 50px rgba(50, 205, 50, 0.6);
         }
 
         .neon-btn-secondary {
-            border-color: #FF0000; /* Rojo navideño */
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+            border-color: #FF4500; /* Rojo navideño */
+            text-shadow: 0 0 15px rgba(255, 69, 0, 0.8);
         }
 
         .neon-btn-secondary:hover {
-            color: #FF0000;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.5);
+            color: #FF4500;
+            box-shadow: 0 0 25px rgba(255, 69, 0, 0.8), 0 0 50px rgba(255, 69, 0, 0.6);
         }
 
         /* Decoraciones navideñas flotantes */
@@ -88,21 +88,21 @@
             position: absolute;
             width: 15px;
             height: 15px;
-            background: white;
+            background: #FDFDFD;
             border-radius: 50%;
-            animation: fall 5s infinite;
+            animation: fall 6s infinite;
         }
 
         @keyframes fall {
             0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.5; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.7; }
         }
 
         .snowflake:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .snowflake:nth-child(2) { left: 30%; animation-delay: 1s; }
-        .snowflake:nth-child(3) { left: 50%; animation-delay: 2s; }
-        .snowflake:nth-child(4) { left: 70%; animation-delay: 3s; }
-        .snowflake:nth-child(5) { left: 90%; animation-delay: 4s; }
+        .snowflake:nth-child(2) { left: 30%; animation-delay: 1.5s; }
+        .snowflake:nth-child(3) { left: 50%; animation-delay: 3s; }
+        .snowflake:nth-child(4) { left: 70%; animation-delay: 4.5s; }
+        .snowflake:nth-child(5) { left: 90%; animation-delay: 6s; }
     </style>
 </head>
 <body>

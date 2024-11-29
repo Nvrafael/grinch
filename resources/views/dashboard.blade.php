@@ -94,30 +94,64 @@
         .swal2-popup { background: linear-gradient(145deg, #1b1b1b, #4caf50); color: white; }
         .swal2-title { font-family: 'Comic Sans MS', cursive; color: #00ffcc; }
         .swal2-html-container { font-family: 'Comic Sans MS', cursive; text-align: left; color: white; }
+
+        
+
     </style>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.getElementById('about-us-btn').addEventListener('click', function () {
-            let gifContainer = document.getElementById('grinch-gif-container');
-            gifContainer.style.display = 'block';
-
-            Swal.fire({
-                title: '<h2 style="color: #00ffcc;">🎄 Sobre Nosotros 🎅</h2>',
-                html: `
-                    <div>
-                        <p><strong style="color: #FF5733;">🎨 Paula</strong>: Diseñadora UX/UI con pasión por los colores navideños.</p>
-                        <p><strong style="color: #33FF57;">🖥️ Rafa</strong>: Experto Backend, asegura que todo funcione perfectamente.</p>
-                        <p><strong style="color: #FFC300;">✨ Carlos</strong>: Especialista en Frontend, hace magia en la pantalla.</p>
-                        <p><strong style="color: #C70039;">👨‍🔧 Sergio</strong>: Coordinador y Testing QA, ¡el Grinch de los bugs!</p>
-                    </div>
-                `,
-                showCloseButton: true,
-                showConfirmButton: false,
-                icon: 'info',
-            }).then(() => gifContainer.style.display = 'none');
+<!-- Script de SweetAlert con estilos personalizados -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('about-us-btn').addEventListener('click', function () {
+        Swal.fire({
+            title: '<h2 style="color: #00ffcc;">🎄 Sobre Nosotros 🎅</h2>',
+            html: `
+                <div>
+                    <p><strong style="color: #FF5733;">🎨 Paula</strong>: Diseñadora UX/UI con pasión por los colores navideños.</p>
+                    <p><strong style="color: #33FF57;">🖥️ Rafa</strong>: Experto Backend, asegura que todo funcione perfectamente.</p>
+                    <p><strong style="color: #FFC300;">✨ Carlos</strong>: Especialista en Frontend, hace magia en la pantalla.</p>
+                    <p><strong style="color: #C70039;">👨‍🔧 Sergio</strong>: Coordinador y Testing QA, ¡el Grinch de los bugs!</p>
+                </div>
+            `,
+            background: 'linear-gradient(145deg, #1b1b1b, #4caf50)',
+            customClass: {
+                popup: 'swal2-glow',
+            },
+            showCloseButton: true,
+            showConfirmButton: false,
+            icon: 'info',
         });
-    </script>
+    });
+</script>
+
+<!-- Estilos personalizados para el SweetAlert -->
+<style>
+    /* Estilo personalizado de SweetAlert */
+    .swal2-popup {
+        background: linear-gradient(145deg, #1b1b1b, #4caf50);
+        color: white;
+        border-radius: 15px;
+        box-shadow: 0 0 20px 5px rgba(0, 255, 150, 0.7);
+        border: 2px solid #00ffcc;
+    }
+    .swal2-title {
+        font-family: 'Comic Sans MS', cursive;
+        font-size: 1.8rem;
+        text-shadow: 0 0 10px rgba(0, 255, 200, 0.7);
+        color: #00ffcc;
+    }
+    .swal2-html-container {
+        font-family: 'Comic Sans MS', cursive;
+        text-align: left;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: white;
+    }
+    .swal2-glow {
+        box-shadow: 0 0 20px rgba(0, 255, 150, 0.5), 0 0 30px rgba(0, 255, 150, 0.4);
+    }
+</style>
+
+
+
 </body>
