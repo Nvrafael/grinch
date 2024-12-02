@@ -2,14 +2,12 @@
 <body class="min-h-screen bg-gradient-to-br from-red-500 via-red-700 to-red-900 relative overflow-hidden flex items-center justify-center text-white">
     <!-- Fondo animado con copos de nieve -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
-        <div class="snowflake"></div>
+        <div class="snowflake" style="left: 10%; animation-duration: 10s;"></div>
+        <div class="snowflake" style="left: 20%; animation-duration: 12s; width: 14px; height: 14px;"></div>
+        <div class="snowflake" style="left: 40%; animation-duration: 11s;"></div>
+        <div class="snowflake" style="left: 60%; animation-duration: 15s; width: 10px; height: 10px;"></div>
+        <div class="snowflake" style="left: 80%; animation-duration: 9s;"></div>
+        <div class="snowflake" style="left: 90%; animation-duration: 14s; width: 16px; height: 16px;"></div>
     </div>
 
     <!-- Contenido principal -->
@@ -26,29 +24,19 @@
 
         <!-- Botones de funcionalidad -->
         <div class="flex flex-col gap-6">
-            <!-- Botón para jugar -->
             <a href="{{ route('game.start') }}"
                class="bg-green-500 text-white px-8 py-4 rounded-full shadow-lg hover:bg-green-600 transition-all duration-500 text-xl font-bold transform hover:scale-105">
                 🎮 Jugar Ahora
             </a>
-
-            <!-- Botón para información sobre personajes -->
             <a href="{{ route('characters.info') }}"
                class="bg-red-500 text-white px-8 py-4 rounded-full shadow-lg hover:bg-red-600 transition-all duration-500 text-xl font-bold transform hover:scale-105">
                 🌟 Información de Personajes
             </a>
-
-            <!-- Botón para información sobre nosotros -->
             <button id="about-us-btn"
                class="bg-blue-500 text-white px-8 py-4 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-500 text-xl font-bold transform hover:scale-105">
                 🧑‍💻 Información Sobre Nosotros
             </button>
         </div>
-    </div>
-
-    <!-- Contenedor del GIF del Grinch -->
-    <div id="grinch-gif-container" class="absolute top-1/4 right-10 hidden">
-        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW02MDI1MHB1cHdnNGFpNGpucDR4eml5bXhkYTFyNjl0N3pzdWs3bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dX4qmW4DV3S6qdx1cU/giphy-downsized-large.gif" alt="Grinch agradeciendo" width="300" class="drop-shadow-lg rounded-lg">
     </div>
 
     <!-- Estilos adicionales -->
@@ -70,12 +58,13 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
-        .snowflake:nth-child(1) { left: 10%; animation-duration: 5s; }
-        .snowflake:nth-child(2) { left: 20%; animation-duration: 7s; width: 14px; height: 14px; }
-        .snowflake:nth-child(3) { left: 40%; animation-duration: 6s; }
-        .snowflake:nth-child(4) { left: 60%; animation-duration: 8s; width: 10px; height: 10px; }
-        .snowflake:nth-child(5) { left: 80%; animation-duration: 4s; }
-        .snowflake:nth-child(6) { left: 90%; animation-duration: 9s; width: 16px; height: 16px; }
+        /* Ajuste de los copos de nieve */
+        .snowflake:nth-child(1) { animation-duration: 10s; left: 10%; }
+        .snowflake:nth-child(2) { animation-duration: 12s; left: 20%; width: 14px; height: 14px; }
+        .snowflake:nth-child(3) { animation-duration: 11s; left: 40%; }
+        .snowflake:nth-child(4) { animation-duration: 15s; left: 60%; width: 10px; height: 10px; }
+        .snowflake:nth-child(5) { animation-duration: 9s; left: 80%; }
+        .snowflake:nth-child(6) { animation-duration: 14s; left: 90%; width: 16px; height: 16px; }
 
         /* Estilo para el contenedor con luz fluorescente */
         .glow-container {
@@ -90,68 +79,104 @@
             transform: scale(1.02);
         }
 
-        /* SweetAlert estilos personalizados */
-        .swal2-popup { background: linear-gradient(145deg, #1b1b1b, #4caf50); color: white; }
-        .swal2-title { font-family: 'Comic Sans MS', cursive; color: #00ffcc; }
-        .swal2-html-container { font-family: 'Comic Sans MS', cursive; text-align: left; color: white; }
+        /* Ajustar el tamaño de la ventana de SweetAlert */
+        .swal2-popup {
+            width: 700px;
+            height: auto;
+            background: linear-gradient(145deg, #1b1b1b, #4caf50);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px 5px rgba(0, 255, 150, 0.7);
+            border: 2px solid #00ffcc;
+            overflow: hidden;
+            position: relative;
+            font-size: 1.2rem;
+            padding: 20px;
+            z-index: 1; /* Asegura que el contenido esté en frente */
+        }
 
-        
+        .swal2-popup::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -10%);
+            width: 180px;
+            height: auto;
+            z-index: -2; /* Menor que el contenido del popup */
+            background-image: url('images/chapters/grinch2.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.2;
+        }
 
+        /* Animación de la imagen del Grinch */
+        .grinch {
+            position: absolute;
+            width: 150px;
+            z-index: -1; /* Asegura que la imagen esté detrás del contenido */
+        }
     </style>
 
-<!-- Script de SweetAlert con estilos personalizados -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    document.getElementById('about-us-btn').addEventListener('click', function () {
-        Swal.fire({
-            title: '<h2 style="color: #00ffcc;">🎄 Sobre Nosotros 🎅</h2>',
-            html: `
-                <div>
-                    <p><strong style="color: #FF5733;">🎨 Paula</strong>: Diseñadora UX/UI con pasión por los colores navideños.</p>
-                    <p><strong style="color: #33FF57;">🖥️ Rafa</strong>: Experto Backend, asegura que todo funcione perfectamente.</p>
-                    <p><strong style="color: #FFC300;">✨ Carlos</strong>: Especialista en Frontend, hace magia en la pantalla.</p>
-                    <p><strong style="color: #C70039;">👨‍🔧 Sergio</strong>: Coordinador y Testing QA, ¡el Grinch de los bugs!</p>
-                </div>
-            `,
-            background: 'linear-gradient(145deg, #1b1b1b, #4caf50)',
-            customClass: {
-                popup: 'swal2-glow',
-            },
-            showCloseButton: true,
-            showConfirmButton: false,
-            icon: 'info',
+    <!-- Script de SweetAlert con imagen animada -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.getElementById('about-us-btn').addEventListener('click', function () {
+            Swal.fire({
+                title: '<h2 style="color: #00ffcc;">🎄 Sobre Nosotros 🎅</h2>',
+                html: `
+                    <div>
+                        <p><strong style="color: #FF5733;">🎨 Rafael</strong>: Experto en backend.</p>
+                        <p><strong style="color: #FF5733;">🎨 Paula</strong>: Diseñadora UX/UI con pasión por los colores navideños.</p>
+                        <p><strong style="color: #FFC300;">✨ Carlos</strong>: Especialista en Frontend, hace magia en la pantalla.</p>
+                        <p><strong style="color: #C70039;">👨‍🔧 Sergio</strong>: Coordinador y Testing QA, ¡el Grinch de los bugs!</p>
+                    </div>
+                `,
+                background: 'linear-gradient(145deg, #1b1b1b, #4caf50)',
+                customClass: {
+                    popup: 'swal2-glow',
+                },
+                showCloseButton: true,
+                showConfirmButton: false,
+                icon: 'info',
+                willOpen: () => {
+                    // Crear y animar la imagen del Grinch
+                    const grinch = document.createElement('img');
+                    grinch.src = 'images/chapters/elgrinch 1.png'; // Verifica que el URL sea correcto
+                    grinch.classList.add('grinch');
+                    document.querySelector('.swal2-popup').appendChild(grinch);
+
+                    // Variables para el movimiento
+                    let posX = 0;
+                    let posY = 0;
+                    let dx = 1; // Cambio en la posición horizontal
+                    let dy = 1; // Cambio en la posición vertical
+
+                    // Función para mover la imagen de manera sutil
+                    function moveGrinch() {
+                        const popup = document.querySelector('.swal2-popup');
+                        const popupWidth = popup.offsetWidth;
+                        const popupHeight = popup.offsetHeight;
+                        const grinchWidth = grinch.offsetWidth;
+                        const grinchHeight = grinch.offsetHeight;
+
+                        // Limitar el movimiento para que no salga del contenedor
+                        if (posX + grinchWidth > popupWidth || posX < 0) dx *= -1;
+                        if (posY + grinchHeight > popupHeight || posY < 0) dy *= -1;
+
+                        posX += dx;
+                        posY += dy;
+
+                        grinch.style.left = posX + 'px';
+                        grinch.style.top = posY + 'px';
+
+                        requestAnimationFrame(moveGrinch);
+                    }
+
+                    moveGrinch();
+                }
+            });
         });
-    });
-</script>
-
-<!-- Estilos personalizados para el SweetAlert -->
-<style>
-    /* Estilo personalizado de SweetAlert */
-    .swal2-popup {
-        background: linear-gradient(145deg, #1b1b1b, #4caf50);
-        color: white;
-        border-radius: 15px;
-        box-shadow: 0 0 20px 5px rgba(0, 255, 150, 0.7);
-        border: 2px solid #00ffcc;
-    }
-    .swal2-title {
-        font-family: 'Comic Sans MS', cursive;
-        font-size: 1.8rem;
-        text-shadow: 0 0 10px rgba(0, 255, 200, 0.7);
-        color: #00ffcc;
-    }
-    .swal2-html-container {
-        font-family: 'Comic Sans MS', cursive;
-        text-align: left;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: white;
-    }
-    .swal2-glow {
-        box-shadow: 0 0 20px rgba(0, 255, 150, 0.5), 0 0 30px rgba(0, 255, 150, 0.4);
-    }
-</style>
-
-
-
+    </script>
 </body>

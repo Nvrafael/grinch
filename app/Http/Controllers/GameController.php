@@ -92,8 +92,8 @@ class GameController extends Controller
             'text' => 'El Grinch regresa a su cueva, pero algo le sigue rondando en el corazón. Se da cuenta de que su soledad no lo hace feliz.',
             'image'=>'images/chapters/chapter5B.png',
             'options' => [
-                ['text' => '❤️ Regresar a la Villa Quién para unirse a ellos', 'next' => 'chapter6A'],
-                ['text' => '❌ Seguir aislado en su cueva', 'next' => 'chapter6B'],
+                ['text' => '❤️ Regresar a la Villa Quién para unirse a ellos', 'next' => 'chapter6B'],
+                ['text' => '❌ Seguir aislado en su cueva', 'next' => 'chapter6A'],
             ],
         ],
         'chapter6A' => [

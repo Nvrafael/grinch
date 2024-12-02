@@ -6,133 +6,203 @@
     <title>Final de la Historia</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Fondo parallax y animación */
+        /* Fondo animado */
         body {
-            background: url('https://cdn.pixabay.com/photo/2019/12/15/17/27/christmas-4698374_1280.jpg') no-repeat center center fixed;
-            background-size: cover;
             margin: 0;
             height: 100vh;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            color: white;
             font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to bottom, #3b1f61, #ff4d4d, #e8a6c1);
+            overflow: hidden;
+            position: relative;
+            animation: gradientShift 8s infinite alternate;
         }
 
-        /* Superposición animada */
-        .overlay {
+        @keyframes gradientShift {
+            0% {
+                background: linear-gradient(to bottom, #3b1f61, #ff4d4d, #e8a6c1);
+            }
+            100% {
+                background: linear-gradient(to bottom, #1f4d3b, #ff6347, #fcbf49);
+            }
+        }
+
+        /* Contenedor centrado */
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            z-index: 10;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Título */
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 0 0 20px #FFA500, 0 0 30px #FFD700;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            margin: 1rem 0.5rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #32CD32, #228B22);
+            color: white;
+            box-shadow: 0 0 20px rgba(50, 205, 50, 0.8);
+        }
+
+        .btn-primary:hover {
+            background: #228B22;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 0 40px rgba(50, 205, 50, 1);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(90deg, #FF6347, #B22222);
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 99, 71, 0.8);
+        }
+
+        .btn-secondary:hover {
+            background: #B22222;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 69, 0, 1);
+        }
+
+        /* Nieve */
+        .snowflake {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall 4s linear infinite, sway 1s ease-in-out infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Estrellas parpadeantes */
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: twinkle 1.5s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        /* Fondo animado */
+        .background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(10, 10, 10, 0.7) 10%, rgba(255, 0, 0, 0.4) 80%);
-            z-index: 0;
-            animation: fadeOverlay 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes fadeOverlay {
-            0% { opacity: 0.7; }
-            100% { opacity: 0.9; }
-        }
-
-        /* Animación del texto del título */
-        .title {
-            font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(90deg, #FF4500, #32CD32, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 3s infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 30px rgba(0, 255, 127, 0.5); }
-            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 40px rgba(50, 205, 50, 0.7); }
-        }
-
-        /* Botones con efectos navideños */
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            margin: 1rem 0;
-            font-size: 1.25rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        .btn-primary {
-            background: #32CD32;
-            color: #FFF;
-            border-color: #228B22;
-        }
-
-        .btn-primary:hover {
-            background: #228B22;
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(50, 205, 50, 0.8), 0 0 40px rgba(0, 255, 0, 0.5);
-        }
-
-        .btn-secondary {
-            background: #FF4500;
-            color: #FFF;
-            border-color: #B22222;
-        }
-
-        .btn-secondary:hover {
-            background: #B22222;
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 69, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.5);
-        }
-
-        /* Decoraciones animadas */
-        .decorations {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .decoration {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            animation: sparkle 6s linear infinite;
-        }
-
-        .decoration:nth-child(1) { top: 10%; left: 20%; animation-delay: 1s; }
-        .decoration:nth-child(2) { top: 30%; left: 70%; animation-delay: 2s; }
-        .decoration:nth-child(3) { top: 60%; left: 50%; animation-delay: 3s; }
-        .decoration:nth-child(4) { top: 80%; left: 10%; animation-delay: 4s; }
-
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.7; }
+            z-index: -1;
         }
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="decorations">
-        <div class="decoration"></div>
-        <div class="decoration"></div>
-        <div class="decoration"></div>
-        <div class="decoration"></div>
-    </div>
-    <div class="relative z-10 text-center p-8 bg-white bg-opacity-90 rounded-xl shadow-xl">
-        <h1 class="title">¡Gracias por Jugar! 🎄</h1>
-        <p class="text-lg mt-4 mb-8 text-gray-800">
-            Has completado la historia interactiva del Grinch. Te esperamos en futuras aventuras llenas de magia y diversión. 🎅
+    <!-- Contenedor principal -->
+    <div class="container">
+        <h1 class="title">¡Gracias por Completar la Historia! 🎉</h1>
+        <p class="mt-4 mb-8 text-lg">
+            Esperamos que hayas disfrutado la mágica aventura del Grinch. ¡Te deseamos unas fiestas llenas de alegría y diversión! 🎅
         </p>
-        <a href="{{ route('dashboard') }}" class="btn btn-primary">Volver a Inicio</a>
-        <a href="{{ route('game.start') }}" class="btn btn-secondary">Jugar de Nuevo</a>
+        <div>
+            <a href="{{ route('dashboard') }}" class="btn btn-primary">Volver a Inicio</a>
+            <a href="{{ route('game.start') }}" class="btn btn-secondary">Jugar de Nuevo</a>
+        </div>
     </div>
+
+    <!-- Fondo animado -->
+    <div class="background" id="background"></div>
+
+    <script>
+        // Generar copos de nieve
+        for (let i = 0; i < 100; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            snowflake.style.width = Math.random() * 5 + 3 + 'px';
+            snowflake.style.height = snowflake.style.width;
+            document.querySelector('.background').appendChild(snowflake);
+        }
+
+        // Generar estrellas parpadeantes
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDuration = Math.random() * 2 + 1 + 's';
+            document.querySelector('.background').appendChild(star);
+        }
+    </script>
 </body>
 </html>

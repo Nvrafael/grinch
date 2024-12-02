@@ -9,7 +9,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         // Puedes usar el nombre de un usuario autenticado si existe
-        $name = auth()->user()->name ?? 'Invitado';
+        $name = auth()->user()->name ?? 'Invitado/a';
         return view('dashboard', compact('name'));
     }
 
