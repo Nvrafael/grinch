@@ -6,13 +6,21 @@ use Illuminate\Http\Request;
  
 class GameController extends Controller
 {
-   
+   /**
+     * Muestra la vista inicial del juego.
+     *
+     * @return \Illuminate\View\View
+     */
+
     public function start()
     {
-       
+        // Retorna la vista 'game.start' que sirve como punto de inicio del juego
         return view('game.start');
     }
-   
+      /**
+     * Historia del juego, organizada por capítulos.
+     * Cada capítulo incluye un título, texto descriptivo, una imagen y opciones de decisión.
+     */
     protected $story = [
         'chapter1' => [
             'title' => ' Una noche de dudas',
@@ -169,14 +177,22 @@ class GameController extends Controller
         ],
     ];
  
+    /**
+     * Muestra un capítulo específico de la historia.
+     *
+     * @param string $chapter El identificador del capítulo.
+     * @return \Illuminate\View\View|\Illuminate\Http\Response
+     */
  
     public function showChapter($chapter)
     {
+        // Verifica si el capítulo existe en la historia
         if (!array_key_exists($chapter, $this->story)) {
             abort(404, 'Capítulo no encontrado');
         }
    
         $chapterData = $this->story[$chapter];
+        
    
         // Calcular progreso en función del capítulo actual
         $totalChapters = count($this->story); // Total de capítulos
@@ -191,14 +207,23 @@ class GameController extends Controller
         // Pasar el progreso a la vista
         return view('game.chapter', ['chapter' => $chapterData, 'progress' => $progress]);
     }
- 
+         /**
+     * Maneja la elección de una opción y redirige al próximo capítulo.
+     *
+     * @param \Illuminate\Http\Request $request La solicitud HTTP.
+     * @param string $chapter El identificador del capítulo actual.
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function chooseOption(Request $request, $chapter)
     {
+        // Obtiene el capítulo siguiente a partir de la opción elegida
         $next = $request->input('next');
+        // Verifica que el capítulo siguiente exista
         if (!array_key_exists($next, $this->story)) {
             abort(404, 'Capítulo no válido');
         }
- 
+        
+        // Redirige a la ruta del próximo capítulo
         return redirect()->route('game.chapter', ['chapter' => $next]);
     }
 }
